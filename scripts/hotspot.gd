@@ -19,7 +19,8 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action_pressed("click"):
+	var is_click = event.is_action_pressed("click") or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed)
+	if is_click:
 		# Find the garage scene and tell the player to walk to this hotspot
 		var garage = get_tree().current_scene.get_node("GarageScene")
 		if garage and garage.has_method("walk_to_hotspot"):

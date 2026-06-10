@@ -47,6 +47,11 @@ func initialize_garage() -> void:
 		item_wheelbarrow.visible = not director.has_wheelbarrow
 		item_tire.visible = not inventory_panel.has_item("tire") and not director.has_lever
 		item_plank.visible = not inventory_panel.has_item("plank") and not director.has_lever
+		
+		# Hook starting narrative dialogue automatically
+		if not director.has_wheelbarrow and not director.body_loaded and not director.has_lever:
+			show_dialogue("Jaggs: 'Alright, we need to load this fat bastard's body into the wheelbarrow, lift him in, unlock that trunk, and get the hell out of here before the cops sniff us out.'")
+			show_dialogue("Jaggs: 'First, I need to find a wheelbarrow and construct some kind of lever to lift him. My back can't take this weight anymore.'")
 
 func _process(delta: float) -> void:
 	# Check if player has arrived at the target hotspot
@@ -61,11 +66,17 @@ func _process(delta: float) -> void:
 
 # Input handler for clicking the ground to move Jaggs
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("click"):
-		if dialogue_panel.visible or hotwire_minigame.visible:
+	var is_click = event.is_action_pressed("click") or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed)
+	if is_click:
+		if dialogue_panel.visible:
+			_show_next_dialogue()
+			get_viewport().set_input_as_handled()
+			return
+		if hotwire_minigame.visible:
 			return # Block input while UI is active
 			
 		var click_pos = get_global_mouse_position()
+		print("Ground clicked at: ", click_pos)
 		
 		# Prevent walking outside logical boundaries
 		click_pos.y = clamp(click_pos.y, 1100.0, 2900.0)
@@ -73,6 +84,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		player.set_move_target(click_pos)
 		current_target_hotspot = null # Cancel previous hotspot target
+		get_viewport().set_input_as_handled()
 
 func walk_to_hotspot(hotspot: Hotspot) -> void:
 	if dialogue_panel.visible or hotwire_minigame.visible:
@@ -94,7 +106,8 @@ func _show_next_dialogue() -> void:
 	dialogue_panel.visible = true
 
 func _on_dialogue_panel_input(event: InputEvent) -> void:
-	if event.is_action_pressed("click"):
+	var is_click = event.is_action_pressed("click") or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed)
+	if is_click:
 		_show_next_dialogue()
 
 func _on_hotspot_interact(hotspot: Hotspot) -> void:
