@@ -65,6 +65,57 @@ size = Vector2(100, 549)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_car"]
 size = Vector2(650, 350)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gritty"]
+bg_color = Color(0.08, 0.08, 0.09, 0.85)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.24, 0.22, 0.18, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.12, 0.12, 0.14, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.24, 0.22, 0.18, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.18, 0.18, 0.21, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.55, 0.15, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.08, 0.08, 0.1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.65, 0.4, 0.1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [node name="GarageScene" type="Node2D" unique_id=900318701]
 script = ExtResource("1_garage_scene")
 
@@ -126,7 +177,7 @@ y_sort_enabled = true
 
 [node name="JaggsPlayer" type="CharacterBody2D" parent="YSort" unique_id=2054664122]
 y_sort_enabled = true
-position = Vector2(2500, 2000)
+position = Vector2(4500, 2700)
 scale = Vector2(0.55, 0.55)
 collision_mask = 3
 script = ExtResource("3_player")
@@ -293,6 +344,7 @@ offset_right = 400.0
 offset_bottom = -130.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gritty")
 
 [node name="DialogueLabel" type="Label" parent="CanvasLayer/DialoguePanel" unique_id=990682895]
 layout_mode = 1
@@ -305,6 +357,10 @@ offset_right = -20.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 18
 text = "Jaggs: 'Text content...'"
 autowrap_mode = 3
@@ -322,7 +378,10 @@ offset_right = -20.0
 offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_colors/font_color = Color(0.55, 0.52, 0.48, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 12
 text = "[Click to Continue]"
 horizontal_alignment = 2
@@ -340,6 +399,7 @@ offset_right = 220.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gritty")
 script = ExtResource("10_inv_panel")
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/InventoryPanel" unique_id=1551081161]
@@ -466,6 +526,7 @@ offset_right = 200.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gritty")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChoicePanel" unique_id=125599090]
 layout_mode = 1
@@ -479,6 +540,10 @@ alignment = 1
 
 [node name="QuestionLabel" type="Label" parent="CanvasLayer/ChoicePanel/VBoxContainer" unique_id=1512937324]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 18
 text = "Get in car and get out of town?"
 horizontal_alignment = 1
@@ -491,11 +556,27 @@ alignment = 1
 [node name="YesButton" type="Button" parent="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer" unique_id=2056316231]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_colors/font_hover_color = Color(0.85, 0.55, 0.15, 1)
+theme_override_colors/font_pressed_color = Color(0.65, 0.4, 0.1, 1)
+theme_override_colors/font_focus_color = Color(0.85, 0.55, 0.15, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
 text = "YES"
 
 [node name="NoButton" type="Button" parent="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer" unique_id=1388329265]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_colors/font_hover_color = Color(0.85, 0.55, 0.15, 1)
+theme_override_colors/font_pressed_color = Color(0.65, 0.4, 0.1, 1)
+theme_override_colors/font_focus_color = Color(0.85, 0.55, 0.15, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
 text = "NO"
 
 [connection signal="minigame_success" from="CanvasLayer/HotwireMinigame" to="." method="_on_hotwire_minigame_success"]
