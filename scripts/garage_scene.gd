@@ -40,15 +40,23 @@ func _ready() -> void:
 func initialize_garage() -> void:
 	var director = get_tree().current_scene
 	if director is Track4Director:
-		# Update background based on whether body is loaded
-		if director.body_loaded:
+		# Update background based on game progress
+		if director.body_in_car:
+			background.texture = load("res://Assets/Images/MJBD__0005_GARAGE_BGD_Trunk-closed.png")
+			item_body.visible = false
+			trunk_open = false
+			if has_node("Boundaries/ColBody"):
+				$Boundaries/ColBody.queue_free()
+		elif director.body_loaded:
 			background.texture = load("res://Assets/Images/MJBD__0004_GARAGE_BGD_Trunk-Open.png")
 			item_body.visible = false
+			trunk_open = true
 			if has_node("Boundaries/ColBody"):
-				$Boundaries/ColBody.disabled = true
+				$Boundaries/ColBody.queue_free()
 		else:
 			background.texture = load("res://Assets/Images/MJBD__0005_GARAGE_BGD_Trunk-closed.png")
 			item_body.visible = true
+			trunk_open = false
 			
 		item_wheelbarrow.visible = not director.has_wheelbarrow
 		item_tire.visible = not inventory_panel.has_item("tire") and not director.has_lever
@@ -176,10 +184,19 @@ func _on_hotspot_interact(hotspot: Hotspot) -> void:
 					# Load the body!
 					director.body_loaded = true
 					hotspot.visible = false
+					
+					# Free both possible collision points for the body!
+					if has_node("Boundaries/ColBody"):
+						get_node("Boundaries/ColBody").queue_free()
+					if hotspot.has_node("SolidBody"):
+						hotspot.get_node("SolidBody").queue_free()
+						
 					show_dialogue("Jaggs: 'Pushed the lever under his armpits, shifted the weight... hup! Loaded him right in. And what do we have here...?'")
 					show_dialogue("Jaggs: 'jackpot! The car keys were deep in his jacket pocket. Let's get the trunk open and load him in.'")
 		"car":
-			if not inventory_panel.has_item("keys"):
+			if director.body_in_car:
+				show_dialogue("Jaggs: 'He's loaded in the trunk. I just need to get the keys in the ignition and start this baby.'")
+			elif not inventory_panel.has_item("keys"):
 				show_dialogue("Jaggs: 'The getaway sedan. It's locked. He's gotta have the keys for this motherfucker somewhere... probably on his body.'")
 			else:
 				if not trunk_open:
@@ -190,14 +207,39 @@ func _on_hotspot_interact(hotspot: Hotspot) -> void:
 					)
 					show_dialogue("Jaggs: 'Trunk is open. Now let's dump this heavy bastard in.'")
 				else:
-					if director.body_loaded:
-						# Body is in wheelbarrow, trunk is open! Show Choice UI
-						$CanvasLayer/ChoicePanel.visible = true
-						$CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer/YesButton.grab_focus()
-					else:
-						show_dialogue("Jaggs: 'Trunk is open, but I need to load his body in first.'")
+					show_dialogue("Jaggs: 'Trunk is open. I need to load his body in.'")
 		"engine":
 			show_dialogue("Jaggs: 'mmm... lubed up holes... reminds me of that guy with a mashed banana stuck in a cylider... No time for jollys, gotta skip town!'")
+
+func handle_inventory_drop_on_car(item_id: String, slot_index: int) -> void:
+	var director = get_tree().current_scene
+	if not (director is Track4Director):
+		return
+		
+	match item_id:
+		"wheelbarrow_body":
+			if trunk_open:
+				director.play_fast_fade(func():
+					background.texture = load("res://Assets/Images/MJBD__0005_GARAGE_BGD_Trunk-closed.png")
+					trunk_open = false
+					director.body_loaded = false
+					director.body_in_car = true
+				)
+				inventory_panel.clear_slot(slot_index)
+				show_dialogue("Jaggs: 'Hup! Slid the body right into the trunk and slammed it shut. Clean and tidy.'")
+			else:
+				show_dialogue("Jaggs: 'The trunk is closed. I need to open it before I can load the body in.'")
+		"keys":
+			if not director.body_in_car:
+				show_dialogue("Jaggs: 'I should load the body into the trunk first. Can't leave him lying around.'")
+			else:
+				# Trigger the minigame
+				show_dialogue("Jaggs: 'those motherfuckers shoved some shit in the ignition... time to hotwire this bitch'")
+				# Delay minigame trigger to let text display
+				var timer = get_tree().create_timer(1.2)
+				timer.timeout.connect(func():
+					director.change_phase(Track4Director.GameplayPhase.HOTWIRE)
+				)
 
 func _on_choice_yes() -> void:
 	$CanvasLayer/ChoicePanel.visible = false

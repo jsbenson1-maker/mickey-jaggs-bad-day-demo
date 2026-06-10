@@ -20,6 +20,11 @@ var body_loaded: bool = false:
 		body_loaded = val
 		emit_signal("state_changed", "body_loaded", val)
 
+var body_in_car: bool = false:
+	set(val):
+		body_in_car = val
+		emit_signal("state_changed", "body_in_car", val)
+
 var car_running: bool = false:
 	set(val):
 		car_running = val

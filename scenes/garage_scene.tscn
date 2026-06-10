@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cx6i2v1m1w1w1" path="res://scenes/hotwire_minigame.tscn" id="12_minigame"]
 [ext_resource type="Texture2D" uid="uid://ci6wk12frwnj" path="res://Assets/Images/MJBD__0000_front-work-bench.png" id="13_workbench"]
 [ext_resource type="Texture2D" uid="uid://dsy0aaycxq5cl" path="res://Assets/Images/MJBD__0002_Engine-block.png" id="14_engine"]
+[ext_resource type="Script" path="res://scripts/drag_drop_overlay.gd" id="15_drag_drop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l"]
 size = Vector2(310, 566)
@@ -36,7 +37,7 @@ size = Vector2(900, 450)
 size = Vector2(500, 400)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body_phys"]
-size = Vector2(400, 120)
+size = Vector2(807.5, 460)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bx"]
 size = Vector2(639, 419)
@@ -48,7 +49,7 @@ radius = 45.0
 size = Vector2(621, 367)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(400, 200)
+size = Vector2(185, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wb"]
 size = Vector2(303, 200)
@@ -158,7 +159,7 @@ position = Vector2(1000, 1950)
 shape = SubResource("RectangleShape2D_ts")
 
 [node name="ColBody" type="CollisionShape2D" parent="Boundaries" unique_id=566648897]
-position = Vector2(3800, 2100)
+position = Vector2(3741.25, 2070)
 shape = SubResource("RectangleShape2D_body_phys")
 
 [node name="ColBoxes" type="CollisionShape2D" parent="Boundaries" unique_id=1778739957]
@@ -194,7 +195,6 @@ shape = SubResource("CircleShape2D_p")
 [node name="Hotspot_Engine" type="Area2D" parent="YSort" unique_id=360200395]
 y_sort_enabled = true
 position = Vector2(4525, 3072)
-collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "engine"
 display_name = "Engine Block"
@@ -222,7 +222,6 @@ texture = ExtResource("13_workbench")
 [node name="Hotspot_Body" type="Area2D" parent="YSort" unique_id=1355389275]
 y_sort_enabled = true
 position = Vector2(3800, 2100)
-collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "body"
 display_name = "Heavy Body"
@@ -233,20 +232,15 @@ scale = Vector2(0.55, 0.55)
 texture = ExtResource("5_body")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Body" unique_id=35929888]
-position = Vector2(0, 50)
+position = Vector2(-357, 170)
 shape = SubResource("RectangleShape2D_body")
 
 [node name="SolidBody" type="StaticBody2D" parent="YSort/Hotspot_Body" unique_id=1253592007]
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Body/SolidBody" unique_id=1562128293]
-position = Vector2(0, 50)
-shape = SubResource("RectangleShape2D_body_phys")
-
 [node name="Hotspot_Wheelbarrow" type="Area2D" parent="YSort" unique_id=1184368444]
 y_sort_enabled = true
 position = Vector2(1200, 2400)
-collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "wheelbarrow"
 display_name = "Rusty Wheelbarrow"
@@ -272,7 +266,6 @@ shape = SubResource("RectangleShape2D_wb_phys")
 [node name="Hotspot_Tire" type="Area2D" parent="YSort" unique_id=973430338]
 y_sort_enabled = true
 position = Vector2(4500, 2500)
-collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "tire"
 display_name = "Discarded Tire"
@@ -290,7 +283,6 @@ shape = SubResource("RectangleShape2D_tire")
 [node name="Hotspot_Plank" type="Area2D" parent="YSort" unique_id=1405344999]
 y_sort_enabled = true
 position = Vector2(700, 2200)
-collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "plank"
 display_name = "Wooden Plank"
@@ -308,7 +300,6 @@ shape = SubResource("RectangleShape2D_plank")
 [node name="Hotspot_Car" type="Area2D" parent="YSort" unique_id=1838788414]
 y_sort_enabled = true
 position = Vector2(3350, 1600)
-collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "car"
 display_name = "Getaway Car"
@@ -318,6 +309,17 @@ interact_distance = 550.0
 shape = SubResource("RectangleShape2D_car")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=430096102]
+
+[node name="DragDropOverlay" type="Control" parent="CanvasLayer" unique_id=987654321]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("15_drag_drop")
 
 [node name="HoverLabel" type="Label" parent="CanvasLayer" unique_id=660802880]
 visible = false

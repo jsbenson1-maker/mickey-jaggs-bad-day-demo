@@ -57,6 +57,17 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	preview.modulate = Color(1, 1, 1, 0.7)
 	set_drag_preview(preview)
 	
+	# Show drag-and-drop overlay on the scene viewport
+	var node = self
+	var garage = null
+	while node:
+		if node is GarageScene:
+			garage = node
+			break
+		node = node.get_parent()
+	if garage and garage.has_node("CanvasLayer/DragDropOverlay"):
+		garage.get_node("CanvasLayer/DragDropOverlay").visible = true
+	
 	return drag_data
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
