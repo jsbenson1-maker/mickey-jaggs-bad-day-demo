@@ -1,0 +1,294 @@
+[gd_scene load_steps=10 format=3 uid="uid://b00t1v1m1w1w6"]
+
+[ext_resource type="Script" path="res://scripts/city_scene.gd" id="1_city"]
+[ext_resource type="Texture2D" uid="uid://df8" path="res://Assets/Images/MJBD_City tile map 1.png" id="2_city_bg"]
+[ext_resource type="PackedScene" path="res://scenes/player_car.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/police_cruiser.tscn" id="4_police"]
+[ext_resource type="PackedScene" path="res://scenes/safe_house.tscn" id="5_safehouse"]
+[ext_resource type="PackedScene" path="res://scenes/traffic_light.tscn" id="6_light"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_block1"]
+size = Vector2(700, 1000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_block2"]
+size = Vector2(1200, 1000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_offramp"]
+size = Vector2(300, 500)
+
+[node name="CityScene" type="Node2D"]
+script = ExtResource("1_city")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_city_bg")
+centered = false
+
+[node name="Buildings" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+; Collision shapes for the blocks
+[node name="CollisionBlock1" type="CollisionShape2D" parent="Buildings"]
+position = Vector2(650, 800)
+shape = SubResource("RectangleShape2D_block1")
+
+[node name="CollisionBlock2" type="CollisionShape2D" parent="Buildings"]
+position = Vector2(2000, 800)
+shape = SubResource("RectangleShape2D_block2")
+
+[node name="CollisionBlock3" type="CollisionShape2D" parent="Buildings"]
+position = Vector2(3600, 800)
+shape = SubResource("RectangleShape2D_block2")
+
+[node name="CollisionBlock4" type="CollisionShape2D" parent="Buildings"]
+position = Vector2(1650, 2200)
+shape = SubResource("RectangleShape2D_block2")
+
+[node name="CollisionBlock5" type="CollisionShape2D" parent="Buildings"]
+position = Vector2(3100, 2200)
+shape = SubResource("RectangleShape2D_block1")
+
+[node name="CollisionBlock6" type="CollisionShape2D" parent="Buildings"]
+position = Vector2(4550, 2200)
+shape = SubResource("RectangleShape2D_block2")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="PlayerCar" parent="YSort" groups=["player_car"] instance=ExtResource("3_player")]
+position = Vector2(600, 2600)
+
+[node name="Camera2D" type="Camera2D" parent="YSort/PlayerCar"]
+zoom = Vector2(0.8, 0.8)
+limit_left = 0
+limit_top = 0
+limit_right = 5504
+limit_bottom = 3072
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="PoliceCruiser1" parent="YSort" instance=ExtResource("4_police")]
+position = Vector2(1000, 1000)
+patrol_waypoints = [Vector2(1000, 1000), Vector2(2500, 1000), Vector2(2500, 1500), Vector2(1000, 1500)]
+
+[node name="PoliceCruiser2" parent="YSort" instance=ExtResource("4_police")]
+position = Vector2(3200, 800)
+patrol_waypoints = [Vector2(3200, 800), Vector2(4800, 800), Vector2(4800, 1500), Vector2(3200, 1500)]
+
+[node name="PoliceCruiser3" parent="YSort" instance=ExtResource("4_police")]
+position = Vector2(3000, 2200)
+patrol_waypoints = [Vector2(3000, 2200), Vector2(4900, 2200), Vector2(4900, 2800), Vector2(3000, 2800)]
+
+[node name="SafeHouse1" parent="YSort" instance=ExtResource("5_safehouse")]
+position = Vector2(1800, 800)
+safehouse_name = "Jaguar North Safehouse"
+
+[node name="SafeHouse2" parent="YSort" instance=ExtResource("5_safehouse")]
+position = Vector2(3800, 2200)
+safehouse_name = "Jaguar South Safehouse"
+
+[node name="TrafficLight1" parent="YSort" instance=ExtResource("6_light")]
+position = Vector2(1200, 1500)
+
+[node name="TrafficLight2" parent="YSort" instance=ExtResource("6_light")]
+position = Vector2(2800, 1500)
+
+[node name="TrafficLight3" parent="YSort" instance=ExtResource("6_light")]
+position = Vector2(4500, 1500)
+
+[node name="TrafficLight4" parent="YSort" instance=ExtResource("6_light")]
+position = Vector2(2800, 2500)
+
+[node name="OffRampArea" type="Area2D" parent="YSort"]
+position = Vector2(5350, 850)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/OffRampArea"]
+shape = SubResource("RectangleShape2D_offramp")
+
+[node name="Visuals" type="Node2D" parent="YSort/OffRampArea"]
+
+[node name="Glow" type="ColorRect" parent="YSort/OffRampArea/Visuals"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -250.0
+offset_right = 150.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.9, 0.3, 0.2)
+
+[node name="Label" type="Label" parent="YSort/OffRampArea/Visuals"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "HIGHWAY GETAWAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/HUD"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 120.0
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/HUD/Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 20
+text = "0 MPH"
+vertical_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/HUD/Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 40.0
+offset_right = 285.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0.9, 0.8, 0.1, 1)
+theme_override_font_sizes/font_size = 14
+text = "STATUS: SEARCHING"
+vertical_alignment = 1
+
+[node name="HeatLabel" type="Label" parent="CanvasLayer/HUD/Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 70.0
+offset_right = 65.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 11
+text = "HEAT:"
+vertical_alignment = 1
+
+[node name="HeatBar" type="ProgressBar" parent="CanvasLayer/HUD/Panel"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 73.0
+offset_right = 285.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 9
+
+[node name="ArrowIndicator" type="Sprite2D" parent="CanvasLayer/HUD"]
+position = Vector2(1200, 60.0)
+scale = Vector2(0.5, 0.5)
+; Procedurally draw a beautiful navigation arrow
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/HUD/ArrowIndicator"]
+color = Color(0.1, 0.9, 0.3, 0.8)
+polygon = PackedVector2Array(0, -30, 40, 0, 0, 30, 0, 10, -40, 10, -40, -10, 0, -10)
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD/ArrowIndicator"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = 2.0
+offset_right = -10.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 9
+text = "ESCAPE"
+horizontal_alignment = 1
+
+[node name="WinUI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="CanvasLayer/WinUI"]
+layout_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.08, 0.04, 0.75)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/WinUI"]
+custom_minimum_size = Vector2(400, 240)
+layout_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -120.0
+offset_right = 200.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WinUI/Panel"]
+layout_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/WinUI/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 32
+text = "GOT AWAY!"
+horizontal_alignment = 1
+
+[node name="SubLabel" type="Label" parent="CanvasLayer/WinUI/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Mickey Jaggs escaped the city.
+The Bad Day is over."
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/WinUI/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "PLAY AGAIN"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/WinUI/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "QUIT"
+
+[connection signal="pressed" from="CanvasLayer/WinUI/Panel/VBoxContainer/RestartButton" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinUI/Panel/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

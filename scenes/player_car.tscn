@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://b00t1v1m1w1w2"]
+
+[ext_resource type="Script" path="res://scripts/player_car.gd" id="1_car"]
+[ext_resource type="Texture2D" uid="uid://df7" path="res://Assets/Images/MJBD__0000_sedan-1.png" id="2_sedan_sprite"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_car_phys"]
+size = Vector2(400, 180)
+
+[node name="PlayerCar" type="CharacterBody2D"]
+collision_layer = 1
+collision_mask = 6
+script = ExtResource("1_car")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("2_sedan_sprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_car_phys")
+
+[node name="Headlights" type="Node2D" parent="."]
+
+; Left Headlight Beam
+[node name="LeftBeam" type="Polygon2D" parent="Headlights"]
+color = Color(0.98, 0.96, 0.75, 0.22)
+polygon = PackedVector2Array(180, -45, 600, -180, 600, -20)
+
+; Right Headlight Beam
+[node name="RightBeam" type="Polygon2D" parent="Headlights"]
+color = Color(0.98, 0.96, 0.75, 0.22)
+polygon = PackedVector2Array(180, 45, 600, 20, 600, 180)

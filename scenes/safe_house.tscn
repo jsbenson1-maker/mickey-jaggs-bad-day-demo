@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://b00t1v1m1w1w5"]
+
+[ext_resource type="Script" path="res://scripts/safe_house.gd" id="1_safehouse"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_safehouse"]
+size = Vector2(300, 300)
+
+[node name="SafeHouse" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_safehouse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_safehouse")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+; Sleek neon cyber borders and glow to denote safe zone
+[node name="GlowZone" type="ColorRect" parent="Visuals"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.9, 0.85, 0.12)
+
+[node name="Border" type="ReferenceRect" parent="Visuals"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.1, 0.9, 0.85, 0.75)
+border_width = 3.0
+editor_only = false

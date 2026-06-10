@@ -1,0 +1,239 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx6i2v1m1w1w1"]
+
+[ext_resource type="Script" path="res://scripts/hotwire_minigame.gd" id="1_minigame"]
+
+[node name="HotwireMinigame" type="Control"]
+layout_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_minigame")
+
+[node name="DimBackground" type="ColorRect" parent="."]
+layout_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.05, 0.08, 0.7)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 420)
+layout_mode = 2
+
+[node name="FeedbackLabel" type="Label" parent="CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -230.0
+offset_top = 20.0
+offset_right = 230.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.1, 0.8, 0.9, 1.0)
+theme_override_font_sizes/font_size = 14
+text = "CONNECT IGNITION WIRES (DRAG MATCHING COLORS)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="WireStageUI" type="Control" parent="CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+; Left terminals (red, blue, yellow)
+[node name="TermLeftRed" type="ColorRect" parent="CenterContainer/Panel/WireStageUI"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 92.0
+offset_right = 88.0
+offset_bottom = 108.0
+color = Color(0.9, 0.15, 0.15, 1)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/WireStageUI/TermLeftRed"]
+layout_mode = 0
+offset_left = -60.0
+offset_top = -4.0
+offset_right = -10.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 12
+text = "RED"
+horizontal_alignment = 2
+
+[node name="TermLeftBlue" type="ColorRect" parent="CenterContainer/Panel/WireStageUI"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 192.0
+offset_right = 88.0
+offset_bottom = 208.0
+color = Color(0.15, 0.3, 0.9, 1)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/WireStageUI/TermLeftBlue"]
+layout_mode = 0
+offset_left = -60.0
+offset_top = -4.0
+offset_right = -10.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 12
+text = "BLUE"
+horizontal_alignment = 2
+
+[node name="TermLeftYellow" type="ColorRect" parent="CenterContainer/Panel/WireStageUI"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 292.0
+offset_right = 88.0
+offset_bottom = 308.0
+color = Color(0.9, 0.8, 0.1, 1)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/WireStageUI/TermLeftYellow"]
+layout_mode = 0
+offset_left = -60.0
+offset_top = -4.0
+offset_right = -10.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 12
+text = "YEL"
+horizontal_alignment = 2
+
+; Right terminals (jumbled: yellow, red, blue)
+[node name="TermRightYellow" type="ColorRect" parent="CenterContainer/Panel/WireStageUI"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 92.0
+offset_right = 428.0
+offset_bottom = 108.0
+color = Color(0.9, 0.8, 0.1, 1)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/WireStageUI/TermRightYellow"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -4.0
+offset_right = 70.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 12
+text = "YEL"
+
+[node name="TermRightRed" type="ColorRect" parent="CenterContainer/Panel/WireStageUI"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 192.0
+offset_right = 428.0
+offset_bottom = 208.0
+color = Color(0.9, 0.15, 0.15, 1)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/WireStageUI/TermRightRed"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -4.0
+offset_right = 70.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 12
+text = "RED"
+
+[node name="TermRightBlue" type="ColorRect" parent="CenterContainer/Panel/WireStageUI"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 292.0
+offset_right = 428.0
+offset_bottom = 308.0
+color = Color(0.15, 0.3, 0.9, 1)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/WireStageUI/TermRightBlue"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -4.0
+offset_right = 70.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 12
+text = "BLUE"
+
+[node name="SparkStageUI" type="Control" parent="CenterContainer/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SparkCountLabel" type="Label" parent="CenterContainer/Panel/SparkStageUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 20.0
+offset_right = 150.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 18
+text = "Ignition Sparks: 0 / 3"
+horizontal_alignment = 1
+
+[node name="SliderBg" type="ColorRect" parent="CenterContainer/Panel/SparkStageUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -40.0
+offset_right = 150.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.12, 0.16, 1)
+
+; Green sweet spot zone in the middle (0.45 to 0.55 of 300 width is centered)
+[node name="SweetZone" type="ColorRect" parent="CenterContainer/Panel/SparkStageUI/SliderBg"]
+layout_mode = 1
+anchors_preset = 13
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 135.0
+offset_top = -15.0
+offset_right = 165.0
+offset_bottom = 15.0
+grow_vertical = 2
+color = Color(0.15, 0.85, 0.35, 0.45)
+
+[node name="SliderBar" type="ColorRect" parent="CenterContainer/Panel/SparkStageUI/SliderBg"]
+layout_mode = 0
+offset_right = 15.0
+offset_bottom = 30.0
+color = Color(0.95, 0.55, 0.1, 1)
+
+[node name="SparkButton" type="Button" parent="CenterContainer/Panel/SparkStageUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "SPARK"
