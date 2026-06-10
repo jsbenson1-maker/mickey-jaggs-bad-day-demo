@@ -40,6 +40,8 @@ func initialize_garage() -> void:
 		if director.body_loaded:
 			background.texture = load("res://Assets/Images/MJBD__0004_GARAGE_BGD_Trunk-Open.png")
 			item_body.visible = false
+			if has_node("Boundaries/ColBody"):
+				$Boundaries/ColBody.disabled = true
 		else:
 			background.texture = load("res://Assets/Images/MJBD__0005_GARAGE_BGD_Trunk-closed.png")
 			item_body.visible = true
@@ -54,6 +56,22 @@ func initialize_garage() -> void:
 			show_dialogue("Jaggs: 'First, I need to find a wheelbarrow and construct some kind of lever to lift him. My back can't take this weight anymore.'")
 
 func _process(delta: float) -> void:
+	# Camera smooth follow with window bounding to avoid showing void space
+	if has_node("Camera2D") and player:
+		var cam = $Camera2D
+		var target_pos = player.global_position
+		
+		# With 0.38 zoom and 1280x720 viewport, half width is 1684, half height is 947
+		var min_x = 1684.0
+		var max_x = 5504.0 - 1684.0
+		var min_y = 947.0
+		var max_y = 3072.0 - 947.0
+		
+		target_pos.x = clamp(target_pos.x, min_x, max_x)
+		target_pos.y = clamp(target_pos.y, min_y, max_y)
+		
+		cam.global_position = cam.global_position.lerp(target_pos, 4.0 * delta)
+
 	# Check if player has arrived at the target hotspot
 	if current_target_hotspot:
 		var dist = player.global_position.distance_to(current_target_hotspot.global_position)
@@ -79,7 +97,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		print("Ground clicked at: ", click_pos)
 		
 		# Prevent walking outside logical boundaries
-		click_pos.y = clamp(click_pos.y, 1100.0, 2900.0)
+		click_pos.y = clamp(click_pos.y, 1950.0, 2900.0)
 		click_pos.x = clamp(click_pos.x, 300.0, 5200.0)
 		
 		player.set_move_target(click_pos)
@@ -139,6 +157,8 @@ func _on_hotspot_interact(hotspot: Hotspot) -> void:
 					hotspot.visible = false
 					# Change background to show open trunk
 					background.texture = load("res://Assets/Images/MJBD__0004_GARAGE_BGD_Trunk-Open.png")
+					if has_node("Boundaries/ColBody"):
+						$Boundaries/ColBody.disabled = true
 					show_dialogue("Jaggs: 'Pushed the lever under his armpits, shifted the weight... hup! Loaded him right in. And what do we have here...?'")
 					show_dialogue("Jaggs: 'jackpot! The car keys were deep in his jacket pocket. Let's get the trunk open and load him in.'")
 		"car":
