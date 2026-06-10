@@ -52,6 +52,9 @@ func _setup_sprite_frames() -> void:
 	animated_sprite.play("idle")
 
 func _physics_process(delta: float) -> void:
+	# Keep sprite scale consistent across animations (compensates for cropped source assets)
+	_adjust_sprite_scale()
+	
 	if not is_moving:
 		velocity = Vector2.ZERO
 		animated_sprite.play("idle")
@@ -81,6 +84,21 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.flip_h = (dir.x < 0)
 		
 	move_and_slide()
+
+func _adjust_sprite_scale() -> void:
+	if not animated_sprite or not animated_sprite.sprite_frames:
+		return
+		
+	var anim = animated_sprite.animation
+	match anim:
+		"idle":
+			animated_sprite.scale = Vector2(1.0, 1.0)
+		"walk":
+			# Walk textures are 1116px tall vs 1406px idle. Scale up to compensate.
+			animated_sprite.scale = Vector2(1.26, 1.26)
+		"run":
+			# Run textures are around 1040px tall. Scale up to compensate.
+			animated_sprite.scale = Vector2(1.32, 1.32)
 
 func set_move_target(target: Vector2) -> void:
 	target_position = target
