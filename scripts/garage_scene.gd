@@ -99,6 +99,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		if hotwire_minigame.visible:
 			return # Block input while UI is active
 			
+		# Check if clicking on an interactive object (hotspot Area2D on layer 1)
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsPointQueryParameters2D.new()
+		query.position = get_global_mouse_position()
+		query.collision_mask = 1
+		query.collide_with_areas = true
+		query.collide_with_bodies = false
+		var results = space_state.intersect_point(query)
+		if not results.is_empty():
+			print("[GarageScene] Click is over a hotspot. Bypassing ground click.")
+			return
+			
 		var click_pos = get_global_mouse_position()
 		print("Ground clicked at: ", click_pos)
 		
