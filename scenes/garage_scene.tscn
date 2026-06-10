@@ -132,19 +132,19 @@ collision_mask = 3
 script = ExtResource("3_player")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/JaggsPlayer" unique_id=740975231]
+position = Vector2(0, -500)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/JaggsPlayer" unique_id=362067945]
-position = Vector2(0, 500)
 shape = SubResource("CircleShape2D_p")
 
 [node name="Hotspot_Engine" type="Area2D" parent="YSort" unique_id=360200395]
 y_sort_enabled = true
 position = Vector2(4525, 3072)
-collision_layer = 8
+collision_layer = 9
 script = ExtResource("4_hotspot")
 item_id = "engine"
 display_name = "Engine Block"
-interact_distance = 350.0
+interact_distance = 450.0
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Engine" unique_id=766799797]
 position = Vector2(0, -184)
@@ -168,11 +168,11 @@ texture = ExtResource("13_workbench")
 [node name="Hotspot_Body" type="Area2D" parent="YSort" unique_id=1355389275]
 y_sort_enabled = true
 position = Vector2(3800, 2100)
-collision_layer = 8
+collision_layer = 9
 script = ExtResource("4_hotspot")
 item_id = "body"
 display_name = "Heavy Body"
-interact_distance = 350.0
+interact_distance = 450.0
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Body" unique_id=1965770749]
 scale = Vector2(0.55, 0.55)
@@ -192,11 +192,11 @@ shape = SubResource("RectangleShape2D_body_phys")
 [node name="Hotspot_Wheelbarrow" type="Area2D" parent="YSort" unique_id=1184368444]
 y_sort_enabled = true
 position = Vector2(1200, 2400)
-collision_layer = 8
+collision_layer = 9
 script = ExtResource("4_hotspot")
 item_id = "wheelbarrow"
 display_name = "Rusty Wheelbarrow"
-interact_distance = 300.0
+interact_distance = 450.0
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Wheelbarrow" unique_id=167471888]
 scale = Vector2(0.75, 0.75)
@@ -215,11 +215,11 @@ shape = SubResource("RectangleShape2D_wb_phys")
 [node name="Hotspot_Tire" type="Area2D" parent="YSort" unique_id=973430338]
 y_sort_enabled = true
 position = Vector2(4500, 2500)
-collision_layer = 8
+collision_layer = 9
 script = ExtResource("4_hotspot")
 item_id = "tire"
 display_name = "Discarded Tire"
-interact_distance = 300.0
+interact_distance = 600.0
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Tire" unique_id=605245248]
 position = Vector2(759.125, 349.60004)
@@ -233,11 +233,11 @@ shape = SubResource("RectangleShape2D_tire")
 [node name="Hotspot_Plank" type="Area2D" parent="YSort" unique_id=1405344999]
 y_sort_enabled = true
 position = Vector2(700, 2200)
-collision_layer = 8
+collision_layer = 9
 script = ExtResource("4_hotspot")
 item_id = "plank"
 display_name = "Wooden Plank"
-interact_distance = 300.0
+interact_distance = 600.0
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Plank" unique_id=2092720820]
 position = Vector2(-619.00006, -3.9999082)
@@ -251,11 +251,11 @@ shape = SubResource("RectangleShape2D_plank")
 [node name="Hotspot_Car" type="Area2D" parent="YSort" unique_id=1838788414]
 y_sort_enabled = true
 position = Vector2(3350, 1600)
-collision_layer = 8
+collision_layer = 9
 script = ExtResource("4_hotspot")
 item_id = "car"
 display_name = "Getaway Car"
-interact_distance = 450.0
+interact_distance = 550.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Car" unique_id=941524152]
 shape = SubResource("RectangleShape2D_car")
