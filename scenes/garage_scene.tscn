@@ -49,16 +49,16 @@ size = Vector2(5504, 1950)
 size = Vector2(5504, 172)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbox"]
-size = Vector2(1335, 250)
+size = Vector2(1335, 570)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cl"]
-size = Vector2(650, 300)
+size = Vector2(900, 450)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ts"]
-size = Vector2(400, 300)
+size = Vector2(500, 400)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bx"]
-size = Vector2(500, 500)
+size = Vector2(700, 600)
 
 [node name="GarageScene" type="Node2D"]
 script = ExtResource("1_garage_scene")
@@ -88,15 +88,15 @@ position = Vector2(2752, 2986)
 shape = SubResource("RectangleShape2D_b")
 
 [node name="ColWorkbench" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(2100, 1925)
+position = Vector2(2399, 2787)
 shape = SubResource("RectangleShape2D_wbox")
 
 [node name="ColCarLift" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(3350, 1600)
+position = Vector2(3600, 1750)
 shape = SubResource("RectangleShape2D_cl")
 
 [node name="ColTireStack" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(1000, 1800)
+position = Vector2(1000, 1950)
 shape = SubResource("RectangleShape2D_ts")
 
 
@@ -105,13 +105,13 @@ position = Vector2(3800, 2100)
 shape = SubResource("RectangleShape2D_body_phys")
 
 [node name="ColBoxes" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(4800, 2600)
+position = Vector2(4700, 2600)
 shape = SubResource("RectangleShape2D_bx")
 
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(2500, 2000)
-zoom = Vector2(0.38, 0.38)
+position = Vector2(2752, 1536)
+zoom = Vector2(0.24, 0.24)
 limit_left = 0
 limit_top = 0
 limit_right = 5504
@@ -138,11 +138,11 @@ shape = SubResource("CircleShape2D_p")
 
 
 [node name="YSort_Workbench" type="Node2D" parent="YSort"]
-position = Vector2(2100, 2050)
+position = Vector2(2399, 3072)
 y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort/YSort_Workbench"]
-position = Vector2(0, -250)
+position = Vector2(0, -285)
 texture = ExtResource("13_workbench")
 
 [node name="Hotspot_Body" type="Area2D" parent="YSort"]

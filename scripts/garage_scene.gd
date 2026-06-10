@@ -61,11 +61,11 @@ func _process(delta: float) -> void:
 		var cam = $Camera2D
 		var target_pos = player.global_position
 		
-		# With 0.38 zoom and 1280x720 viewport, half width is 1684, half height is 947
-		var min_x = 1684.0
-		var max_x = 5504.0 - 1684.0
-		var min_y = 947.0
-		var max_y = 3072.0 - 947.0
+		# With 0.24 zoom and 1280x720 viewport, half width is 2666.6, half height is 1500
+		var min_x = 2666.6
+		var max_x = 5504.0 - 2666.6
+		var min_y = 1500.0
+		var max_y = 3072.0 - 1500.0
 		
 		target_pos.x = clamp(target_pos.x, min_x, max_x)
 		target_pos.y = clamp(target_pos.y, min_y, max_y)
@@ -97,8 +97,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		print("Ground clicked at: ", click_pos)
 		
 		# Prevent walking outside logical boundaries
-		click_pos.y = clamp(click_pos.y, 1950.0, 2900.0)
-		click_pos.x = clamp(click_pos.x, 300.0, 5200.0)
+		click_pos.y = clamp(click_pos.y, 1950.0, 2850.0)
+		click_pos.x = clamp(click_pos.x, 500.0, 5000.0)
 		
 		player.set_move_target(click_pos)
 		current_target_hotspot = null # Cancel previous hotspot target
