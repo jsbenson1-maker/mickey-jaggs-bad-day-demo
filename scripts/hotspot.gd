@@ -13,10 +13,11 @@ signal interacted(hotspot: Hotspot)
 var is_hovered: bool = false
 
 func _ready() -> void:
-	# Enable input pickable
+	print("[Hotspot ", name, "] _ready() called. input_pickable before: ", input_pickable)
 	input_pickable = true
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
+	print("[Hotspot ", name, "] input_pickable after: ", input_pickable, " | layer: ", collision_layer)
 
 func _get_garage_scene() -> GarageScene:
 	var node = self
@@ -34,14 +35,18 @@ func get_interaction_position() -> Vector2:
 	return global_position
 
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		print("[Hotspot ", name, "] _input_event: ", event.as_text(), " | pressed: ", event.pressed)
 	var is_click = event.is_action_pressed("click") or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed)
 	if is_click:
+		print("[Hotspot ", name, "] Click registered. Sending player to: ", get_interaction_position())
 		var garage = _get_garage_scene()
 		if garage and garage.has_method("walk_to_hotspot"):
 			garage.walk_to_hotspot(self)
 			viewport.set_input_as_handled()
 
 func _on_mouse_entered() -> void:
+	print("[Hotspot ", name, "] Mouse entered.")
 	is_hovered = true
 	# Premium highlight outline glow effect
 	if sprite:
@@ -55,6 +60,7 @@ func _on_mouse_entered() -> void:
 		garage.get_node("CanvasLayer/HoverLabel").visible = true
 
 func _on_mouse_exited() -> void:
+	print("[Hotspot ", name, "] Mouse exited.")
 	is_hovered = false
 	if sprite:
 		var tween = create_tween()
@@ -67,4 +73,5 @@ func _on_mouse_exited() -> void:
 
 # Triggered when player arrives at the hotspot
 func trigger_interaction() -> void:
+	print("[Hotspot ", name, "] trigger_interaction() called!")
 	emit_signal("interacted", self)

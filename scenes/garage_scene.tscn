@@ -194,7 +194,7 @@ shape = SubResource("CircleShape2D_p")
 [node name="Hotspot_Engine" type="Area2D" parent="YSort" unique_id=360200395]
 y_sort_enabled = true
 position = Vector2(4525, 3072)
-collision_layer = 9
+collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "engine"
 display_name = "Engine Block"
@@ -222,7 +222,7 @@ texture = ExtResource("13_workbench")
 [node name="Hotspot_Body" type="Area2D" parent="YSort" unique_id=1355389275]
 y_sort_enabled = true
 position = Vector2(3800, 2100)
-collision_layer = 9
+collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "body"
 display_name = "Heavy Body"
@@ -246,7 +246,7 @@ shape = SubResource("RectangleShape2D_body_phys")
 [node name="Hotspot_Wheelbarrow" type="Area2D" parent="YSort" unique_id=1184368444]
 y_sort_enabled = true
 position = Vector2(1200, 2400)
-collision_layer = 9
+collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "wheelbarrow"
 display_name = "Rusty Wheelbarrow"
@@ -272,7 +272,7 @@ shape = SubResource("RectangleShape2D_wb_phys")
 [node name="Hotspot_Tire" type="Area2D" parent="YSort" unique_id=973430338]
 y_sort_enabled = true
 position = Vector2(4500, 2500)
-collision_layer = 9
+collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "tire"
 display_name = "Discarded Tire"
@@ -290,7 +290,7 @@ shape = SubResource("RectangleShape2D_tire")
 [node name="Hotspot_Plank" type="Area2D" parent="YSort" unique_id=1405344999]
 y_sort_enabled = true
 position = Vector2(700, 2200)
-collision_layer = 9
+collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "plank"
 display_name = "Wooden Plank"
@@ -308,7 +308,7 @@ shape = SubResource("RectangleShape2D_plank")
 [node name="Hotspot_Car" type="Area2D" parent="YSort" unique_id=1838788414]
 y_sort_enabled = true
 position = Vector2(3350, 1600)
-collision_layer = 9
+collision_layer = 1
 script = ExtResource("4_hotspot")
 item_id = "car"
 display_name = "Getaway Car"

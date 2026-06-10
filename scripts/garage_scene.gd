@@ -79,7 +79,9 @@ func _process(delta: float) -> void:
 	# Check if player has arrived at the target hotspot
 	if current_target_hotspot:
 		var dist = player.global_position.distance_to(current_target_hotspot.get_interaction_position())
+		print("[GarageScene] Current target hotspot: ", current_target_hotspot.name, " | Dist: ", dist, " | Required: ", current_target_hotspot.interact_distance)
 		if dist <= current_target_hotspot.interact_distance:
+			print("[GarageScene] Target reached! Triggering interaction for: ", current_target_hotspot.name)
 			# Arrived! Stop moving and interact
 			player.is_moving = false
 			player.velocity = Vector2.ZERO
@@ -111,6 +113,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func walk_to_hotspot(hotspot: Hotspot) -> void:
 	if dialogue_panel.visible or hotwire_minigame.visible:
 		return
+	print("[GarageScene] walk_to_hotspot called for: ", hotspot.name, " | Target pos: ", hotspot.get_interaction_position())
 	current_target_hotspot = hotspot
 	player.set_move_target(hotspot.get_interaction_position())
 
