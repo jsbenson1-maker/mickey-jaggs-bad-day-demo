@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dsy0aaycxq5cl" path="res://Assets/Images/MJBD__0002_Engine-block.png" id="14_engine"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l"]
-size = Vector2(436, 3072)
+size = Vector2(310, 566)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r"]
 size = Vector2(300, 3072)
@@ -51,7 +51,7 @@ size = Vector2(621, 367)
 size = Vector2(400, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wb"]
-size = Vector2(250, 200)
+size = Vector2(303, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wb_phys"]
 size = Vector2(343, 405)
@@ -76,7 +76,6 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-shadow_color = Color(0, 0, 0, 0.6)
 shadow_size = 8
 shadow_offset = Vector2(0, 4)
 
@@ -87,18 +86,6 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.24, 0.22, 0.18, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
-bg_color = Color(0.18, 0.18, 0.21, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.85, 0.55, 0.15, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -116,6 +103,18 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.18, 0.18, 0.21, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.55, 0.15, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [node name="GarageScene" type="Node2D" unique_id=900318701]
 script = ExtResource("1_garage_scene")
 
@@ -126,8 +125,12 @@ centered = false
 [node name="Boundaries" type="StaticBody2D" parent="." unique_id=831624320]
 collision_layer = 2
 
+[node name="ColLeft2" type="CollisionShape2D" parent="Boundaries" unique_id=2124516219]
+position = Vector2(439, 1907)
+shape = SubResource("RectangleShape2D_l")
+
 [node name="ColLeft" type="CollisionShape2D" parent="Boundaries" unique_id=1861069318]
-position = Vector2(218, 1536)
+position = Vector2(155.5, 2785.5)
 shape = SubResource("RectangleShape2D_l")
 
 [node name="ColRight" type="CollisionShape2D" parent="Boundaries" unique_id=585119234]
@@ -250,17 +253,20 @@ display_name = "Rusty Wheelbarrow"
 interact_distance = 450.0
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Wheelbarrow" unique_id=167471888]
+position = Vector2(106, 354)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("6_wheelbarrow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Wheelbarrow" unique_id=846987892]
+position = Vector2(52.5, 184)
 shape = SubResource("RectangleShape2D_wb")
 
 [node name="SolidBody" type="StaticBody2D" parent="YSort/Hotspot_Wheelbarrow" unique_id=97855169]
+position = Vector2(-14, 18)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Wheelbarrow/SolidBody" unique_id=1794851844]
-position = Vector2(31.5, 43.5)
+position = Vector2(126, 452)
 shape = SubResource("RectangleShape2D_wb_phys")
 
 [node name="Hotspot_Tire" type="Area2D" parent="YSort" unique_id=973430338]
@@ -557,12 +563,12 @@ alignment = 1
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
-theme_override_colors/font_hover_color = Color(0.85, 0.55, 0.15, 1)
-theme_override_colors/font_pressed_color = Color(0.65, 0.4, 0.1, 1)
 theme_override_colors/font_focus_color = Color(0.85, 0.55, 0.15, 1)
+theme_override_colors/font_pressed_color = Color(0.65, 0.4, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.85, 0.55, 0.15, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
 text = "YES"
 
@@ -570,12 +576,12 @@ text = "YES"
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
-theme_override_colors/font_hover_color = Color(0.85, 0.55, 0.15, 1)
-theme_override_colors/font_pressed_color = Color(0.65, 0.4, 0.1, 1)
 theme_override_colors/font_focus_color = Color(0.85, 0.55, 0.15, 1)
+theme_override_colors/font_pressed_color = Color(0.65, 0.4, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.85, 0.55, 0.15, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
 text = "NO"
 
