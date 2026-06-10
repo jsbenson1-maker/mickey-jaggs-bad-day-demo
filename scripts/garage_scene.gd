@@ -16,8 +16,11 @@ class_name GarageScene
 @onready var item_plank: Hotspot = $YSort/Hotspot_Plank
 @onready var item_car: Hotspot = $YSort/Hotspot_Car
 
+@onready var item_engine: Hotspot = $YSort/Hotspot_Engine
+
 var current_target_hotspot: Hotspot = null
 var dialogue_queue: Array[String] = []
+var trunk_open: bool = false
 
 func _ready() -> void:
 	dialogue_panel.visible = false
@@ -32,6 +35,7 @@ func _ready() -> void:
 	item_tire.interacted.connect(_on_hotspot_interact)
 	item_plank.interacted.connect(_on_hotspot_interact)
 	item_car.interacted.connect(_on_hotspot_interact)
+	item_engine.interacted.connect(_on_hotspot_interact)
 
 func initialize_garage() -> void:
 	var director = get_tree().current_scene
@@ -137,11 +141,11 @@ func _on_hotspot_interact(hotspot: Hotspot) -> void:
 		"tire":
 			if inventory_panel.add_item("tire"):
 				hotspot.visible = false
-				show_dialogue("Jaggs: 'An old, heavy-duty sedan tire. This could make a perfect pivot.'")
+				show_dialogue("Jaggs: 'A heavy rubber tire. I can use this as a pivot... now I just need a long wooden plank to make a lever.'")
 		"plank":
 			if inventory_panel.add_item("plank"):
 				hotspot.visible = false
-				show_dialogue("Jaggs: 'A solid, thick wood plank. If I place this over a pivot, I can lift anything.'")
+				show_dialogue("Jaggs: 'A sturdy wooden plank. Perfect for leverage... if I can find a solid pivot, like an old tire, I can lift that body.'")
 		"wheelbarrow":
 			director.has_wheelbarrow = true
 			if inventory_panel.add_item("wheelbarrow"):
@@ -149,25 +153,52 @@ func _on_hotspot_interact(hotspot: Hotspot) -> void:
 				show_dialogue("Jaggs: 'An empty wheelbarrow. It will carry the body... if I can get him into it.'")
 		"body":
 			if not director.body_loaded:
-				if not director.has_lever:
+				if not director.has_wheelbarrow:
+					show_dialogue("Jaggs: 'Too heavy. Even with leverage, I can't drag him out of here on foot. I need a wheelbarrow first.'")
+				elif not director.has_lever:
 					show_dialogue("Jaggs: 'Too heavy. The guy's like a sack of wet cement. Back is shot from years of this shit. I need some serious leverage.'")
 				else:
 					# Load the body!
 					director.body_loaded = true
 					hotspot.visible = false
-					# Change background to show open trunk
-					background.texture = load("res://Assets/Images/MJBD__0004_GARAGE_BGD_Trunk-Open.png")
-					if has_node("Boundaries/ColBody"):
-						$Boundaries/ColBody.disabled = true
 					show_dialogue("Jaggs: 'Pushed the lever under his armpits, shifted the weight... hup! Loaded him right in. And what do we have here...?'")
 					show_dialogue("Jaggs: 'jackpot! The car keys were deep in his jacket pocket. Let's get the trunk open and load him in.'")
 		"car":
-			if not director.body_loaded:
-				show_dialogue("Jaggs: 'The getaway sedan. He's gotta have the keys for this motherfucker somewhere. Check his pockets.'")
+			if not inventory_panel.has_item("keys"):
+				show_dialogue("Jaggs: 'The getaway sedan. It's locked. He's gotta have the keys for this motherfucker somewhere... probably on his body.'")
 			else:
-				# Complete validation
-				show_dialogue("Jaggs: 'Keys are in, body's loaded. But this ignition is completely busted. Need to hotwire the starter motor to jump the connection...'")
-				director.change_phase(Track4Director.GameplayPhase.HOTWIRE)
+				if not trunk_open:
+					# Fast fade transition
+					director.play_fast_fade(func():
+						background.texture = load("res://Assets/Images/MJBD__0004_GARAGE_BGD_Trunk-Open.png")
+						trunk_open = true
+					)
+					show_dialogue("Jaggs: 'Trunk is open. Now let's dump this heavy bastard in.'")
+				else:
+					if director.body_loaded:
+						# Body is in wheelbarrow, trunk is open! Show Choice UI
+						$CanvasLayer/ChoicePanel.visible = true
+						$CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer/YesButton.grab_focus()
+					else:
+						show_dialogue("Jaggs: 'Trunk is open, but I need to load his body in first.'")
+		"engine":
+			show_dialogue("Jaggs: 'mmm... lubed up holes... reminds me of that guy with a mashed banana stuck in a cylider... No time for jollys, gotta skip town!'")
+
+func _on_choice_yes() -> void:
+	$CanvasLayer/ChoicePanel.visible = false
+	show_dialogue("Jaggs: 'those motherfuckers shoved some shit in the ignition... time to hotwire this bitch'")
+	
+	# Delay minigame trigger to let text display
+	var timer = get_tree().create_timer(1.2)
+	timer.timeout.connect(func():
+		var director = get_tree().current_scene
+		if director is Track4Director:
+			director.change_phase(Track4Director.GameplayPhase.HOTWIRE)
+	)
+
+func _on_choice_no() -> void:
+	$CanvasLayer/ChoicePanel.visible = false
+	show_dialogue("Jaggs: 'No time to waste. Gotta make sure I'm fully ready before getting in.'")
 
 func open_hotwire_minigame() -> void:
 	hotwire_minigame.visible = true

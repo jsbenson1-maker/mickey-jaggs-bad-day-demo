@@ -100,3 +100,13 @@ func _on_retry_confirmed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+# Fast fade transition for retro point-and-click style events (e.g. opening the trunk)
+func play_fast_fade(callback: Callable) -> void:
+	var tween = create_tween()
+	# Fast fade out (0.15s)
+	tween.tween_property(transition_rect, "color", Color(0, 0, 0, 1), 0.15)
+	# Trigger the event
+	tween.tween_callback(callback)
+	# Fast fade in (0.15s)
+	tween.tween_property(transition_rect, "color", Color(0, 0, 0, 0), 0.15)

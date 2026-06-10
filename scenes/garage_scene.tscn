@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b00t1v1m1w1w"]
+[gd_scene load_steps=27 format=3 uid="uid://b00t1v1m1w1w"]
 
 [ext_resource type="Script" path="res://scripts/garage_scene.gd" id="1_garage_scene"]
 [ext_resource type="Texture2D" uid="uid://df1" path="res://Assets/Images/MJBD__0005_GARAGE_BGD_Trunk-closed.png" id="2_bg"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/inventory_slot.gd" id="11_inv_slot"]
 [ext_resource type="PackedScene" path="res://scenes/hotwire_minigame.tscn" id="12_minigame"]
 [ext_resource type="Texture2D" uid="uid://df9" path="res://Assets/Images/MJBD__0000_front-work-bench.png" id="13_workbench"]
+[ext_resource type="Texture2D" uid="uid://df10" path="res://Assets/Images/MJBD__0002_Engine-block.png" id="14_engine"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p"]
 radius = 45.0
@@ -32,6 +33,11 @@ size = Vector2(100, 250)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_car"]
 size = Vector2(650, 350)
 
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_engine_phys"]
+size = Vector2(621, 367)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb_phys"]
+size = Vector2(250, 180)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body_phys"]
 size = Vector2(400, 120)
@@ -137,8 +143,34 @@ shape = SubResource("CircleShape2D_p")
 
 
 
+
+[node name="Hotspot_Engine" type="Area2D" parent="YSort"]
+position = Vector2(4525, 3072)
+collision_layer = 8
+y_sort_enabled = true
+script = ExtResource("4_hotspot")
+item_id = "engine"
+display_name = "Engine Block"
+interact_distance = 350.0
+
+[node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Engine"]
+position = Vector2(0, -184)
+texture = ExtResource("14_engine")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Engine"]
+position = Vector2(0, -184)
+shape = SubResource("RectangleShape2D_engine_phys")
+
+[node name="SolidBody" type="StaticBody2D" parent="YSort/Hotspot_Engine"]
+collision_layer = 2
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Engine/SolidBody"]
+position = Vector2(0, -184)
+shape = SubResource("RectangleShape2D_engine_phys")
+
 [node name="YSort_Workbench" type="Node2D" parent="YSort"]
-position = Vector2(2399, 3072)
+position = Vector2(4261, 3072)
 y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort/YSort_Workbench"]
@@ -162,6 +194,14 @@ texture = ExtResource("5_body")
 position = Vector2(0, 50)
 shape = SubResource("RectangleShape2D_body")
 
+[node name="SolidBody" type="StaticBody2D" parent="YSort/Hotspot_Body"]
+collision_layer = 2
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Body/SolidBody"]
+position = Vector2(0, 50)
+shape = SubResource("RectangleShape2D_body_phys")
+
 [node name="Hotspot_Wheelbarrow" type="Area2D" parent="YSort"]
 position = Vector2(1200, 2400)
 collision_layer = 8
@@ -172,14 +212,21 @@ display_name = "Rusty Wheelbarrow"
 interact_distance = 300.0
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Wheelbarrow"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("6_wheelbarrow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Wheelbarrow"]
 shape = SubResource("RectangleShape2D_wb")
 
+[node name="SolidBody" type="StaticBody2D" parent="YSort/Hotspot_Wheelbarrow"]
+collision_layer = 2
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Wheelbarrow/SolidBody"]
+shape = SubResource("RectangleShape2D_wb_phys")
+
 [node name="Hotspot_Tire" type="Area2D" parent="YSort"]
-position = Vector2(1450, 1950)
+position = Vector2(4500, 2500)
 collision_layer = 8
 y_sort_enabled = true
 script = ExtResource("4_hotspot")
@@ -195,7 +242,7 @@ texture = ExtResource("7_tire")
 shape = SubResource("RectangleShape2D_tire")
 
 [node name="Hotspot_Plank" type="Area2D" parent="YSort"]
-position = Vector2(2800, 2500)
+position = Vector2(700, 2200)
 collision_layer = 8
 y_sort_enabled = true
 script = ExtResource("4_hotspot")
@@ -413,4 +460,54 @@ grow_vertical = 2
 [node name="HotwireMinigame" parent="CanvasLayer" instance=ExtResource("12_minigame")]
 visible = false
 
+
+[node name="ChoicePanel" type="Panel" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(400, 160)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -80.0
+offset_right = 200.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChoicePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="QuestionLabel" type="Label" parent="CanvasLayer/ChoicePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Get in car and get out of town?"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChoicePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="YesButton" type="Button" parent="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "YES"
+
+[node name="NoButton" type="Button" parent="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "NO"
+
 [connection signal="minigame_success" from="CanvasLayer/HotwireMinigame" to="." method="_on_hotwire_minigame_success"]
+
+[connection signal="pressed" from="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_choice_yes"]
+[connection signal="pressed" from="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_choice_no"]
