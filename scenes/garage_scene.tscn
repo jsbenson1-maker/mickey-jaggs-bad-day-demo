@@ -1,61 +1,33 @@
-[gd_scene load_steps=27 format=3 uid="uid://b00t1v1m1w1w"]
+[gd_scene format=3 uid="uid://b00t1v1m1w1w"]
 
-[ext_resource type="Script" path="res://scripts/garage_scene.gd" id="1_garage_scene"]
-[ext_resource type="Texture2D" uid="uid://df1" path="res://Assets/Images/MJBD__0005_GARAGE_BGD_Trunk-closed.png" id="2_bg"]
-[ext_resource type="Script" path="res://scripts/jaggs_player.gd" id="3_player"]
-[ext_resource type="Script" path="res://scripts/hotspot.gd" id="4_hotspot"]
-[ext_resource type="Texture2D" uid="uid://df2" path="res://Assets/Images/MJBD_dead body.png" id="5_body"]
-[ext_resource type="Texture2D" uid="uid://df3" path="res://Assets/Images/MJBD_Wheelbarrow sprite for scene.png" id="6_wheelbarrow"]
-[ext_resource type="Texture2D" uid="uid://df4" path="res://Assets/Images/MJBD__0001_Tire-for-lever-puzzle.png" id="7_tire"]
-[ext_resource type="Texture2D" uid="uid://df5" path="res://Assets/Images/MJBD__0003_plank-for-lever-puzzle.png" id="8_plank"]
-[ext_resource type="Texture2D" uid="uid://df6" path="res://Assets/Images/MJBD__0000_sedan-1.png" id="9_sedan"]
-[ext_resource type="Script" path="res://scripts/inventory_panel.gd" id="10_inv_panel"]
-[ext_resource type="Script" path="res://scripts/inventory_slot.gd" id="11_inv_slot"]
-[ext_resource type="PackedScene" path="res://scenes/hotwire_minigame.tscn" id="12_minigame"]
-[ext_resource type="Texture2D" uid="uid://df9" path="res://Assets/Images/MJBD__0000_front-work-bench.png" id="13_workbench"]
-[ext_resource type="Texture2D" uid="uid://df10" path="res://Assets/Images/MJBD__0002_Engine-block.png" id="14_engine"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_p"]
-radius = 45.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(400, 200)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb"]
-size = Vector2(250, 200)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tire"]
-size = Vector2(150, 150)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_plank"]
-size = Vector2(100, 250)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_car"]
-size = Vector2(650, 350)
-
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_engine_phys"]
-size = Vector2(621, 367)
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb_phys"]
-size = Vector2(250, 180)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_body_phys"]
-size = Vector2(400, 120)
+[ext_resource type="Script" uid="uid://bif2wli88gjnl" path="res://scripts/garage_scene.gd" id="1_garage_scene"]
+[ext_resource type="Texture2D" uid="uid://d15g78hdwvcdf" path="res://Assets/Images/MJBD__0005_GARAGE_BGD_Trunk-closed.png" id="2_bg"]
+[ext_resource type="Script" uid="uid://20lod5gtvhlc" path="res://scripts/jaggs_player.gd" id="3_player"]
+[ext_resource type="Script" uid="uid://dsy1wnekuot2q" path="res://scripts/hotspot.gd" id="4_hotspot"]
+[ext_resource type="Texture2D" uid="uid://db3u1u11fh2pb" path="res://Assets/Images/MJBD_dead body.png" id="5_body"]
+[ext_resource type="Texture2D" uid="uid://n8ylgtnv2vjw" path="res://Assets/Images/MJBD_Wheelbarrow sprite for scene.png" id="6_wheelbarrow"]
+[ext_resource type="Texture2D" uid="uid://drwhkim84nedx" path="res://Assets/Images/MJBD__0001_Tire-for-lever-puzzle.png" id="7_tire"]
+[ext_resource type="Texture2D" uid="uid://cjxmtpi4at0w3" path="res://Assets/Images/MJBD__0003_plank-for-lever-puzzle.png" id="8_plank"]
+[ext_resource type="Script" uid="uid://c6ixie2s7qfwk" path="res://scripts/inventory_panel.gd" id="10_inv_panel"]
+[ext_resource type="Script" uid="uid://cih6ilofboepx" path="res://scripts/inventory_slot.gd" id="11_inv_slot"]
+[ext_resource type="PackedScene" uid="uid://cx6i2v1m1w1w1" path="res://scenes/hotwire_minigame.tscn" id="12_minigame"]
+[ext_resource type="Texture2D" uid="uid://ci6wk12frwnj" path="res://Assets/Images/MJBD__0000_front-work-bench.png" id="13_workbench"]
+[ext_resource type="Texture2D" uid="uid://dsy0aaycxq5cl" path="res://Assets/Images/MJBD__0002_Engine-block.png" id="14_engine"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l"]
-size = Vector2(300, 3072)
+size = Vector2(436, 3072)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r"]
 size = Vector2(300, 3072)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t"]
-size = Vector2(5504, 1950)
+size = Vector2(5504, 1890)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b"]
-size = Vector2(5504, 172)
+size = Vector2(702, 231)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbox"]
-size = Vector2(1335, 570)
+size = Vector2(798, 429)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cl"]
 size = Vector2(900, 450)
@@ -63,59 +35,83 @@ size = Vector2(900, 450)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ts"]
 size = Vector2(500, 400)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bx"]
-size = Vector2(700, 600)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body_phys"]
+size = Vector2(400, 120)
 
-[node name="GarageScene" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bx"]
+size = Vector2(639, 419)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p"]
+radius = 45.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_engine_phys"]
+size = Vector2(621, 367)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(400, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb"]
+size = Vector2(250, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb_phys"]
+size = Vector2(343, 405)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tire"]
+size = Vector2(150, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plank"]
+size = Vector2(100, 549)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_car"]
+size = Vector2(650, 350)
+
+[node name="GarageScene" type="Node2D" unique_id=900318701]
 script = ExtResource("1_garage_scene")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=226178013]
 texture = ExtResource("2_bg")
 centered = false
 
-[node name="Boundaries" type="StaticBody2D" parent="."]
+[node name="Boundaries" type="StaticBody2D" parent="." unique_id=831624320]
 collision_layer = 2
-collision_mask = 1
 
-[node name="ColLeft" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(150, 1536)
+[node name="ColLeft" type="CollisionShape2D" parent="Boundaries" unique_id=1861069318]
+position = Vector2(218, 1536)
 shape = SubResource("RectangleShape2D_l")
 
-[node name="ColRight" type="CollisionShape2D" parent="Boundaries"]
+[node name="ColRight" type="CollisionShape2D" parent="Boundaries" unique_id=585119234]
 position = Vector2(5354, 1536)
 shape = SubResource("RectangleShape2D_r")
 
-[node name="ColTop" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(2752, 975)
+[node name="ColTop" type="CollisionShape2D" parent="Boundaries" unique_id=1930723223]
+position = Vector2(2752, 945)
 shape = SubResource("RectangleShape2D_t")
 
-[node name="ColBottom" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(2752, 2986)
+[node name="ColBottom" type="CollisionShape2D" parent="Boundaries" unique_id=1681685270]
+position = Vector2(652, 2956.5)
 shape = SubResource("RectangleShape2D_b")
 
-[node name="ColWorkbench" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(2399, 2787)
+[node name="ColWorkbench" type="CollisionShape2D" parent="Boundaries" unique_id=1091339156]
+position = Vector2(2632, 2857.5)
 shape = SubResource("RectangleShape2D_wbox")
 
-[node name="ColCarLift" type="CollisionShape2D" parent="Boundaries"]
+[node name="ColCarLift" type="CollisionShape2D" parent="Boundaries" unique_id=1150328867]
 position = Vector2(3600, 1750)
 shape = SubResource("RectangleShape2D_cl")
 
-[node name="ColTireStack" type="CollisionShape2D" parent="Boundaries"]
+[node name="ColTireStack" type="CollisionShape2D" parent="Boundaries" unique_id=1181968170]
 position = Vector2(1000, 1950)
 shape = SubResource("RectangleShape2D_ts")
 
-
-[node name="ColBody" type="CollisionShape2D" parent="Boundaries"]
+[node name="ColBody" type="CollisionShape2D" parent="Boundaries" unique_id=566648897]
 position = Vector2(3800, 2100)
 shape = SubResource("RectangleShape2D_body_phys")
 
-[node name="ColBoxes" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(4700, 2600)
+[node name="ColBoxes" type="CollisionShape2D" parent="Boundaries" unique_id=1778739957]
+position = Vector2(5258.5, 2390.5)
 shape = SubResource("RectangleShape2D_bx")
 
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=510257191]
 position = Vector2(2752, 1536)
 zoom = Vector2(0.24, 0.24)
 limit_left = 0
@@ -125,153 +121,148 @@ limit_bottom = 3072
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 
-[node name="YSort" type="Node2D" parent="."]
+[node name="YSort" type="Node2D" parent="." unique_id=749840635]
 y_sort_enabled = true
 
-[node name="JaggsPlayer" type="CharacterBody2D" parent="YSort"]
+[node name="JaggsPlayer" type="CharacterBody2D" parent="YSort" unique_id=2054664122]
+y_sort_enabled = true
 position = Vector2(2500, 2000)
 scale = Vector2(0.55, 0.55)
 collision_mask = 3
-y_sort_enabled = true
 script = ExtResource("3_player")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/JaggsPlayer"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/JaggsPlayer" unique_id=740975231]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/JaggsPlayer"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/JaggsPlayer" unique_id=362067945]
 position = Vector2(0, 500)
 shape = SubResource("CircleShape2D_p")
 
-
-
-
-[node name="Hotspot_Engine" type="Area2D" parent="YSort"]
+[node name="Hotspot_Engine" type="Area2D" parent="YSort" unique_id=360200395]
+y_sort_enabled = true
 position = Vector2(4525, 3072)
 collision_layer = 8
-y_sort_enabled = true
 script = ExtResource("4_hotspot")
 item_id = "engine"
 display_name = "Engine Block"
 interact_distance = 350.0
 
-[node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Engine"]
+[node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Engine" unique_id=766799797]
 position = Vector2(0, -184)
 texture = ExtResource("14_engine")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Engine"]
-position = Vector2(0, -184)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Engine" unique_id=414944094]
+position = Vector2(-6, -187)
 shape = SubResource("RectangleShape2D_engine_phys")
 
-[node name="SolidBody" type="StaticBody2D" parent="YSort/Hotspot_Engine"]
+[node name="SolidBody" type="StaticBody2D" parent="YSort/Hotspot_Engine" unique_id=533649770]
 collision_layer = 2
-collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Engine/SolidBody"]
-position = Vector2(0, -184)
-shape = SubResource("RectangleShape2D_engine_phys")
-
-[node name="YSort_Workbench" type="Node2D" parent="YSort"]
-position = Vector2(4261, 3072)
+[node name="YSort_Workbench" type="Node2D" parent="YSort" unique_id=94899326]
 y_sort_enabled = true
+position = Vector2(4261, 3072)
 
-[node name="Sprite2D" type="Sprite2D" parent="YSort/YSort_Workbench"]
-position = Vector2(0, -285)
+[node name="Sprite2D" type="Sprite2D" parent="YSort/YSort_Workbench" unique_id=666832277]
+position = Vector2(-1863, -291)
 texture = ExtResource("13_workbench")
 
-[node name="Hotspot_Body" type="Area2D" parent="YSort"]
+[node name="Hotspot_Body" type="Area2D" parent="YSort" unique_id=1355389275]
+y_sort_enabled = true
 position = Vector2(3800, 2100)
 collision_layer = 8
-y_sort_enabled = true
 script = ExtResource("4_hotspot")
 item_id = "body"
 display_name = "Heavy Body"
 interact_distance = 350.0
 
-[node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Body"]
+[node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Body" unique_id=1965770749]
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("5_body")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Body"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Body" unique_id=35929888]
 position = Vector2(0, 50)
 shape = SubResource("RectangleShape2D_body")
 
-[node name="SolidBody" type="StaticBody2D" parent="YSort/Hotspot_Body"]
+[node name="SolidBody" type="StaticBody2D" parent="YSort/Hotspot_Body" unique_id=1253592007]
 collision_layer = 2
-collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Body/SolidBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Body/SolidBody" unique_id=1562128293]
 position = Vector2(0, 50)
 shape = SubResource("RectangleShape2D_body_phys")
 
-[node name="Hotspot_Wheelbarrow" type="Area2D" parent="YSort"]
+[node name="Hotspot_Wheelbarrow" type="Area2D" parent="YSort" unique_id=1184368444]
+y_sort_enabled = true
 position = Vector2(1200, 2400)
 collision_layer = 8
-y_sort_enabled = true
 script = ExtResource("4_hotspot")
 item_id = "wheelbarrow"
 display_name = "Rusty Wheelbarrow"
 interact_distance = 300.0
 
-[node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Wheelbarrow"]
+[node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Wheelbarrow" unique_id=167471888]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("6_wheelbarrow")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Wheelbarrow"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Wheelbarrow" unique_id=846987892]
 shape = SubResource("RectangleShape2D_wb")
 
-[node name="SolidBody" type="StaticBody2D" parent="YSort/Hotspot_Wheelbarrow"]
+[node name="SolidBody" type="StaticBody2D" parent="YSort/Hotspot_Wheelbarrow" unique_id=97855169]
 collision_layer = 2
-collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Wheelbarrow/SolidBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Wheelbarrow/SolidBody" unique_id=1794851844]
+position = Vector2(31.5, 43.5)
 shape = SubResource("RectangleShape2D_wb_phys")
 
-[node name="Hotspot_Tire" type="Area2D" parent="YSort"]
+[node name="Hotspot_Tire" type="Area2D" parent="YSort" unique_id=973430338]
+y_sort_enabled = true
 position = Vector2(4500, 2500)
 collision_layer = 8
-y_sort_enabled = true
 script = ExtResource("4_hotspot")
 item_id = "tire"
 display_name = "Discarded Tire"
 interact_distance = 300.0
 
-[node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Tire"]
-scale = Vector2(0.55, 0.55)
+[node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Tire" unique_id=605245248]
+position = Vector2(759.125, 349.60004)
+scale = Vector2(1.0083333, 0.9848212)
 texture = ExtResource("7_tire")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Tire"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Tire" unique_id=400868427]
+position = Vector2(639, 333)
 shape = SubResource("RectangleShape2D_tire")
 
-[node name="Hotspot_Plank" type="Area2D" parent="YSort"]
+[node name="Hotspot_Plank" type="Area2D" parent="YSort" unique_id=1405344999]
+y_sort_enabled = true
 position = Vector2(700, 2200)
 collision_layer = 8
-y_sort_enabled = true
 script = ExtResource("4_hotspot")
 item_id = "plank"
 display_name = "Wooden Plank"
 interact_distance = 300.0
 
-[node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Plank"]
-scale = Vector2(0.55, 0.55)
+[node name="Sprite2D" type="Sprite2D" parent="YSort/Hotspot_Plank" unique_id=2092720820]
+position = Vector2(-619.00006, -3.9999082)
+scale = Vector2(0.9674399, 0.9674399)
 texture = ExtResource("8_plank")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Plank"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Plank" unique_id=102622644]
+position = Vector2(-606, -14)
 shape = SubResource("RectangleShape2D_plank")
 
-[node name="Hotspot_Car" type="Area2D" parent="YSort"]
+[node name="Hotspot_Car" type="Area2D" parent="YSort" unique_id=1838788414]
+y_sort_enabled = true
 position = Vector2(3350, 1600)
 collision_layer = 8
-y_sort_enabled = true
 script = ExtResource("4_hotspot")
 item_id = "car"
 display_name = "Getaway Car"
 interact_distance = 450.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Car"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Hotspot_Car" unique_id=941524152]
 shape = SubResource("RectangleShape2D_car")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=430096102]
 
-[node name="HoverLabel" type="Label" parent="CanvasLayer"]
+[node name="HoverLabel" type="Label" parent="CanvasLayer" unique_id=660802880]
 visible = false
 anchors_preset = 5
 anchor_left = 0.5
@@ -281,14 +272,14 @@ offset_top = 20.0
 offset_right = 200.0
 offset_bottom = 60.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.1, 0.9, 0.5, 1.0)
+theme_override_colors/font_color = Color(0.1, 0.9, 0.5, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Interactive Object"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DialoguePanel" type="Panel" parent="CanvasLayer"]
+[node name="DialoguePanel" type="Panel" parent="CanvasLayer" unique_id=728450807]
 visible = false
 custom_minimum_size = Vector2(800, 120)
 anchors_preset = 7
@@ -303,7 +294,7 @@ offset_bottom = -130.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="DialogueLabel" type="Label" parent="CanvasLayer/DialoguePanel"]
+[node name="DialogueLabel" type="Label" parent="CanvasLayer/DialoguePanel" unique_id=990682895]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -318,7 +309,7 @@ theme_override_font_sizes/font_size = 18
 text = "Jaggs: 'Text content...'"
 autowrap_mode = 3
 
-[node name="PromptLabel" type="Label" parent="CanvasLayer/DialoguePanel"]
+[node name="PromptLabel" type="Label" parent="CanvasLayer/DialoguePanel" unique_id=1362378346]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -336,7 +327,7 @@ theme_override_font_sizes/font_size = 12
 text = "[Click to Continue]"
 horizontal_alignment = 2
 
-[node name="InventoryPanel" type="Panel" parent="CanvasLayer"]
+[node name="InventoryPanel" type="Panel" parent="CanvasLayer" unique_id=2125783062]
 custom_minimum_size = Vector2(440, 100)
 anchors_preset = 7
 anchor_left = 0.5
@@ -351,7 +342,7 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("10_inv_panel")
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/InventoryPanel"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/InventoryPanel" unique_id=1551081161]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -367,13 +358,12 @@ grow_vertical = 2
 theme_override_constants/h_separation = 10
 columns = 5
 
-[node name="Slot0" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer" groups=["inventory_slots"]]
+[node name="Slot0" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer" unique_id=880006344 groups=["inventory_slots"]]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 script = ExtResource("11_inv_slot")
-slot_index = 0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryPanel/GridContainer/Slot0"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryPanel/GridContainer/Slot0" unique_id=1421891907]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -385,13 +375,13 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Slot1" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer" groups=["inventory_slots"]]
+[node name="Slot1" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer" unique_id=826571452 groups=["inventory_slots"]]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 script = ExtResource("11_inv_slot")
 slot_index = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryPanel/GridContainer/Slot1"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryPanel/GridContainer/Slot1" unique_id=332982330]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -403,13 +393,13 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Slot2" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer" groups=["inventory_slots"]]
+[node name="Slot2" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer" unique_id=1063937565 groups=["inventory_slots"]]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 script = ExtResource("11_inv_slot")
 slot_index = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryPanel/GridContainer/Slot2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryPanel/GridContainer/Slot2" unique_id=888205807]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -421,13 +411,13 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Slot3" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer" groups=["inventory_slots"]]
+[node name="Slot3" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer" unique_id=1285409699 groups=["inventory_slots"]]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 script = ExtResource("11_inv_slot")
 slot_index = 3
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryPanel/GridContainer/Slot3"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryPanel/GridContainer/Slot3" unique_id=1473255471]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -439,13 +429,13 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Slot4" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer" groups=["inventory_slots"]]
+[node name="Slot4" type="Panel" parent="CanvasLayer/InventoryPanel/GridContainer" unique_id=697264884 groups=["inventory_slots"]]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 script = ExtResource("11_inv_slot")
 slot_index = 4
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryPanel/GridContainer/Slot4"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryPanel/GridContainer/Slot4" unique_id=338368619]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -457,11 +447,12 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HotwireMinigame" parent="CanvasLayer" instance=ExtResource("12_minigame")]
+[node name="HotwireMinigame" parent="CanvasLayer" unique_id=1126796525 instance=ExtResource("12_minigame")]
 visible = false
+layout_mode = 3
+anchors_preset = 15
 
-
-[node name="ChoicePanel" type="Panel" parent="CanvasLayer"]
+[node name="ChoicePanel" type="Panel" parent="CanvasLayer" unique_id=1439851861]
 visible = false
 custom_minimum_size = Vector2(400, 160)
 anchors_preset = 8
@@ -476,7 +467,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChoicePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ChoicePanel" unique_id=125599090]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -486,28 +477,27 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="QuestionLabel" type="Label" parent="CanvasLayer/ChoicePanel/VBoxContainer"]
+[node name="QuestionLabel" type="Label" parent="CanvasLayer/ChoicePanel/VBoxContainer" unique_id=1512937324]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Get in car and get out of town?"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChoicePanel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ChoicePanel/VBoxContainer" unique_id=360855267]
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="YesButton" type="Button" parent="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer"]
+[node name="YesButton" type="Button" parent="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer" unique_id=2056316231]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 text = "YES"
 
-[node name="NoButton" type="Button" parent="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer"]
+[node name="NoButton" type="Button" parent="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer" unique_id=1388329265]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 text = "NO"
 
 [connection signal="minigame_success" from="CanvasLayer/HotwireMinigame" to="." method="_on_hotwire_minigame_success"]
-
 [connection signal="pressed" from="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_choice_yes"]
 [connection signal="pressed" from="CanvasLayer/ChoicePanel/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_choice_no"]

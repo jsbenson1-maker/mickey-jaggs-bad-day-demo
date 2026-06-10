@@ -200,10 +200,21 @@ func _on_spark_button_pressed() -> void:
 			timer.timeout.connect(func(): flash.queue_free())
 
 func _screen_shake() -> void:
-	# Access player camera if available and shake it
-	var garage = get_tree().current_scene.get_node_or_null("GarageScene")
+	# Resolve GarageScene dynamically
+	var node = self
+	var garage = null
+	while node:
+		if node is GarageScene:
+			garage = node
+			break
+		node = node.get_parent()
+		
 	if garage:
-		var cam = garage.get_node_or_null("YSort/JaggsPlayer/Camera2D")
+		# Search for camera at root of GarageScene or nested in the player
+		var cam = garage.get_node_or_null("Camera2D")
+		if not cam:
+			cam = garage.get_node_or_null("YSort/JaggsPlayer/Camera2D")
+			
 		if cam:
 			var orig_offset = cam.offset
 			var tween = create_tween()

@@ -96,7 +96,13 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 			director.has_lever = true
 			
 		# Show narrative text
-		var garage = get_tree().current_scene.get_node("GarageScene")
+		var node = self
+		var garage = null
+		while node:
+			if node is GarageScene:
+				garage = node
+				break
+			node = node.get_parent()
 		if garage:
 			garage.show_dialogue("Jaggs: 'Perfect. Wedged the wooden plank inside the tire. That gives me a solid pivot. makeshift body lifting lever ready.'")
 			

@@ -78,7 +78,7 @@ func _process(delta: float) -> void:
 
 	# Check if player has arrived at the target hotspot
 	if current_target_hotspot:
-		var dist = player.global_position.distance_to(current_target_hotspot.global_position)
+		var dist = player.global_position.distance_to(current_target_hotspot.get_interaction_position())
 		if dist <= current_target_hotspot.interact_distance:
 			# Arrived! Stop moving and interact
 			player.is_moving = false
@@ -112,7 +112,7 @@ func walk_to_hotspot(hotspot: Hotspot) -> void:
 	if dialogue_panel.visible or hotwire_minigame.visible:
 		return
 	current_target_hotspot = hotspot
-	player.set_move_target(hotspot.global_position)
+	player.set_move_target(hotspot.get_interaction_position())
 
 func show_dialogue(text: String) -> void:
 	dialogue_queue.append(text)

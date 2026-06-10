@@ -18,13 +18,28 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 
+func _get_garage_scene() -> GarageScene:
+	var node = self
+	while node:
+		if node is GarageScene:
+			return node
+		node = node.get_parent()
+	return null
+
+func get_interaction_position() -> Vector2:
+	if has_node("CollisionShape2D"):
+		return get_node("CollisionShape2D").global_position
+	elif sprite:
+		return sprite.global_position
+	return global_position
+
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
 	var is_click = event.is_action_pressed("click") or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed)
 	if is_click:
-		# Find the garage scene and tell the player to walk to this hotspot
-		var garage = get_tree().current_scene.get_node("GarageScene")
+		var garage = _get_garage_scene()
 		if garage and garage.has_method("walk_to_hotspot"):
 			garage.walk_to_hotspot(self)
+			viewport.set_input_as_handled()
 
 func _on_mouse_entered() -> void:
 	is_hovered = true
@@ -34,7 +49,7 @@ func _on_mouse_entered() -> void:
 		tween.tween_property(sprite, "modulate", Color(1.2, 1.2, 1.5, 1.0), 0.15)
 	
 	# Show hover tooltip on the garage UI
-	var garage = get_tree().current_scene.get_node("GarageScene")
+	var garage = _get_garage_scene()
 	if garage and garage.has_node("CanvasLayer/HoverLabel"):
 		garage.get_node("CanvasLayer/HoverLabel").text = display_name
 		garage.get_node("CanvasLayer/HoverLabel").visible = true
@@ -45,7 +60,7 @@ func _on_mouse_exited() -> void:
 		var tween = create_tween()
 		tween.tween_property(sprite, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.15)
 		
-	var garage = get_tree().current_scene.get_node("GarageScene")
+	var garage = _get_garage_scene()
 	if garage and garage.has_node("CanvasLayer/HoverLabel"):
 		if garage.get_node("CanvasLayer/HoverLabel").text == display_name:
 			garage.get_node("CanvasLayer/HoverLabel").visible = false
